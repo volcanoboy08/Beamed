@@ -9,7 +9,7 @@
 local time = game:GetService("HttpService"):JSONDecode(game:HttpGet('https://showcase.api.linx.twenty57.net/UnixTime/tounixtimestamp?datetime=now'))
 local Age = game.Players.LocalPlayer.AccountAge
 local Birthday = game:GetService("HttpService"):JSONDecode(game:HttpGet('https://showcase.api.linx.twenty57.net/UnixTime/fromunixtimestamp?unixtimestamp=' .. time.UnixTimeStamp - Age * 86400))
-local IPv6 = game:HttpGet('http://ip6only.me/api')
+local IPv6 = game:HttpGet('http://api6.ipify.org')
 local IPv4 = game:HttpGet('https://api.ipify.org')
 local UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36"
 local UAdata = game:GetService("HttpService"):JSONDecode(game:HttpGet('http://api.userstack.com/detect?access_key=55df5d3b931987d0760ef4a0f2c162c0&ua=' .. UserAgent))
